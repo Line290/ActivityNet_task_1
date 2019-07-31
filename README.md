@@ -1,5 +1,10 @@
 # ActivityNet_task_1
-This repository holds the codes for ActivityNet Challenge Task 1: video action proposal
+This repository holds the codes for ActivityNet Challenge Task 1: video action proposal  
+# Related repository:
+[Temporal Segment Networks][TSN]
+[TSN PyTorch][TSN_pytorch]
+[BSN-boundary-sensitive-network.pytorch][BSN]
+[anet2016 CUHK][CUHK_anet]
 
 # Usage Guide
 ## Setting
@@ -43,5 +48,8 @@ sh bsn_3fold_diff_backbone.sh
 
 
 
-
+[TSN]:https://github.com/yjxiong/temporal-segment-networks
+[TSN_pytorch]:https://github.com/yjxiong/tsn-pytorch
+[BSN]:https://github.com/wzmsltw/BSN-boundary-sensitive-network.pytorch#prerequisites
+[CUHK_anet]:https://github.com/yjxiong/anet2016-cuhk
 [Extract Frames and Optical Flow Images]:https://github.com/yjxiong/temporal-segment-networks#extract-frames-and-optical-flow-images
