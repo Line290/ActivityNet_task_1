@@ -25,7 +25,7 @@ RGB&Flow
 sh extract_feature.sh
 ```
 ## BSN
-### Scaling RGB and Flow features and concatenate them
+### Rescaling RGB and Flow features and concatenate them
 ```bash
 cd ./BSN
 python data_process.py arch ../TSN/RGB_feature_folder ../TSN/Flow_feature_folder num_works
