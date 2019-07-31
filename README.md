@@ -1,5 +1,5 @@
 # ActivityNet_task_1
-This repository holds the codes for ActivityNet Challenge Task 1: video action proposal  
+This repository holds the codes for ActivityNet Challenge Task 1: Temporal Action Proposals   
 # Related repository:
 [Temporal Segment Networks][TSN]  
 [TSN PyTorch][TSN_pytorch]  
