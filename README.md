@@ -1,9 +1,9 @@
 # ActivityNet_task_1
 This repository holds the codes for ActivityNet Challenge Task 1: video action proposal  
 # Related repository:
-[Temporal Segment Networks][TSN]
-[TSN PyTorch][TSN_pytorch]
-[BSN-boundary-sensitive-network.pytorch][BSN]
+[Temporal Segment Networks][TSN]  
+[TSN PyTorch][TSN_pytorch]  
+[BSN-boundary-sensitive-network.pytorch][BSN]  
 [anet2016 CUHK][CUHK_anet]
 
 # Usage Guide
