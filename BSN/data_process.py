@@ -161,6 +161,6 @@ pool = Pool(int(num_works))
 with tqdm(total=len(videoNameList)) as pbar:
     for _ in pool.imap_unordered(rescale, videoNameList):
         pbar.update()
-# outfile=open("./"+arch+"_anet_anno_anet.json","w")
-# json.dump(videoDict,outfile)
-# outfile.close()
+outfile=open("./"+arch+"_anet_anno_anet.json","w")
+json.dump(videoDict,outfile)
+outfile.close()

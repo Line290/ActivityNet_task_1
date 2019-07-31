@@ -10,10 +10,7 @@ from torchvision import transforms as T
 from PIL import Image
 from tqdm import tqdm
 from models import TSN
-#from models_weights import TSN
 
-seed = 42
-torch.manual_seed(42)
 
 class ZipDataset(Dataset):
     def __init__(self, dir_path, modality='RGB', snippet=16, transform=None):
@@ -110,51 +107,12 @@ class ZipDataset(Dataset):
         except:
             pass
 
-def batch_padding(batch):
-    padding = 20 - len(batch)
-    if padding == 0:
-        return batch, padding
-    else:
-        #image_padding = [Image.fromarray(np.zeros((224, 224, 3)).astype(np.uint8)) for _ in range(padding)]
-        #image_result = [i for j in [batch, image_padding] for i in j]
-        image_padding = torch.zeros((padding, 3, 224, 224))
-        image_result = torch.cat((batch, image_padding), dim=0)
-        return image_result, padding
 
 def inference(model, dataloader):
     logits = []
     for batch in dataloader:
-        #print ("batch.size", batch.size())
-        #batch, padding = batch_padding(batch)
-        #print ("batch.size", len(batch))
-        #print ("image.size", batch[0])
         batch = torch.autograd.Variable(batch, volatile=True).cuda()
-        #print ("batch.size", batch.size())
-        #_, _, cls = model(batch)
-        out = model(batch)
-        #print ("out.size", out.size())
-        #print ("weights.size", weights.size())
-        out = out.data.cpu().numpy()
-        #weights = weights.data.cpu().numpy()
-        #print ("output.data", _.data)
-        #start = start.data.cpu().numpy()
-        #print ('start.data', start)
-        #end = end.data.cpu().numpy()
-        #cls = cls.data.cpu().numpy()
-        #print ("cls.data", cls)
-        #out = out.reshape(-1, out.shape[-1])
-        #print ("out.size", out.shape)
-        #start = start.reshape(-1, start.shape[-1])
-        #end = end.reshape(-1, end.shape[-1])
-        #cls = cls.reshape(-1, cls.shape[-1])
-        #cls = cls[:len(cls)-padding]
-        #print ("start.size", start.shape)
-        #print ("end.size", end.shape)
-        #print ("cls.size", cls.shape)
-        out = out.reshape(-1, out.shape[-1])
-        #weights = weights.reshape(-1, weights.shape[-1])
-        #out = np.concatenate([out, weights], axis=1)
-        #print ("out.size", out.shape)
+        out = model(batch).data.cpu().numpy().copy()
         logits.append(out)
     logits = np.concatenate(logits, axis=0)
     return logits
@@ -168,20 +126,19 @@ class Roll(object):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--list_file')
-    parser.add_argument('--weights')
+    parser.add_argument('list_file')
+    parser.add_argument('weights')
     parser.add_argument('--save_dir', '-s', default='output_ftrs')
     parser.add_argument('--modality', '-m', default='RGB', choices=['RGB', 'Flow', 'RGBDiff'])
     parser.add_argument('--arch', default="se_resnext101_32x4d")
-    parser.add_argument('--batch_size', '-b', type=int, default=256)
-    parser.add_argument('--num_workers', '-j', type=int, default=16)
-    parser.add_argument('--num_snippet', type=int, default=8)
+    parser.add_argument('--batch_size', '-b', type=int, default=64)
+    parser.add_argument('--num_workers', '-j', type=int, default=4)
     args = parser.parse_args()
 
     df = pd.read_csv(args.list_file, sep=' ', names=['path'], usecols=[0])
     df.drop_duplicates('path', inplace=True)
 
-    net = TSN(200, 1, args.modality, base_model=args.arch, consensus_type='identity', dropout=0.8)
+    net = TSN(200, 1, args.modality, base_model=args.arch, consensus_type='identity', dropout=0.5)
 
     if args.arch == 'BNInception':
         input_mean = [x / 255. for x in net.input_mean]
@@ -206,13 +163,6 @@ if __name__ == '__main__':
             T.ToTensor(),
             T.Normalize(net.input_mean, net.input_std)
         ])
-    elif 'inception' in args.arch:
-        transform = T.Compose([
-            T.Scale(net.scale_size, Image.BILINEAR),
-            T.CenterCrop(net.input_size),
-            T.ToTensor(),
-            T.Normalize(net.input_mean, net.input_std)
-        ])
     else:
         raise NotImplementedError
 
@@ -222,20 +172,19 @@ if __name__ == '__main__':
     base_dict = {'.'.join(k.split('.')[1:]): v for k, v in list(checkpoint['state_dict'].items())}
 
     net = net.cuda()
-    #print (net)
     net.load_state_dict(base_dict)
     net.eval()
-
-    if not os.path.exists(args.save_dir):
-        os.mkdir(args.save_dir)
+    save_dir = args.save_dir + '_' + args.modality + '_' + args.arch
+    if not os.path.exists(save_dir):
+        os.mkdir(save_dir)
 
     for _, row in tqdm(df.iterrows(), total=df.shape[0]):
-        csv_path = os.path.join(args.save_dir, os.path.basename(row['path']) + '.csv')
+        csv_path = os.path.join(save_dir, os.path.basename(row['path']) + '.csv')
         if os.path.exists(csv_path):
             continue
 
         dataloader = DataLoader(
-            dataset=ZipDataset(row['path'], args.modality, args.num_snippet, transform),
+            dataset=ZipDataset(row['path'], args.modality, 16, transform),
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             pin_memory=True,
@@ -243,5 +192,5 @@ if __name__ == '__main__':
         )
 
         logits = inference(net, dataloader)
-        frange = range(200+128) if args.modality == 'RGB' else range(200, 400)
+        frange = range(200) if args.modality == 'RGB' else range(200, 400)
         np.savetxt(csv_path, logits, '%.11f', ',', header=','.join(['f{}'.format(i) for i in frange]))
