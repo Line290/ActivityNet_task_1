@@ -1,6 +1,6 @@
 # ActivityNet_task_1
 This repository holds the codes for ActivityNet Challenge Task 1: Temporal Action Proposals   
-# Related repository:
+# Related repositories:
 [Temporal Segment Networks][TSN]  
 [TSN PyTorch][TSN_pytorch]  
 [BSN-boundary-sensitive-network.pytorch][BSN]  
