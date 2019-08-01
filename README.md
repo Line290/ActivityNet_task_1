@@ -38,7 +38,19 @@ sh bsn_3fold_diff_backbone.sh
 ```bash
 ./BSN/output/result_proposal.json
 ```
-
+# Ensemble
+## Soft-NMS layer ensemble
+Naive greed search to find a combination. 
+```bash
+   mv ./BSN/ensemble/* ./BSN
+   # need to add
+```
+# Demo
+Put TSN RGB trained model in the folder ``./demo_activity``  
+Download: dpn92_RGB_k600_fold_2_rgb_model_best.pth.tar, [google_drive][google_drive] or [baidu_pan_passwd_3u29][baidu_pan]
+```bash
+cd demo_activity && sh run.sh VIDEO_PATH
+```
 
 
 
@@ -53,3 +65,5 @@ sh bsn_3fold_diff_backbone.sh
 [BSN]:https://github.com/wzmsltw/BSN-boundary-sensitive-network.pytorch#prerequisites
 [CUHK_anet]:https://github.com/yjxiong/anet2016-cuhk
 [Extract Frames and Optical Flow Images]:https://github.com/yjxiong/temporal-segment-networks#extract-frames-and-optical-flow-images
+[google_drive]:https://drive.google.com/open?id=1014wTFhfv5Cr0vH49x4L4JACtgS8AXw2
+[baidu_pan]:https://pan.baidu.com/s/1T0JfdWWcA7uhh0ohoAYusg
