@@ -7,7 +7,7 @@ This repository holds the codes for ActivityNet Challenge Task 1: Temporal Actio
 [anet2016 CUHK][CUHK_anet]
 
 # *Update
-DPN92 RGB+Flow feature nonrescale[Baidu_pan_passwd_gsja][dpn92]
+DPN92 RGB+Flow nonrescale feature [Baidu_pan_passwd_gsja][dpn92]
 # Usage Guide
 ## Setting
 ```
