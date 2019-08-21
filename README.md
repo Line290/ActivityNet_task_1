@@ -7,7 +7,7 @@ This repository holds the codes for ActivityNet Challenge Task 1: Temporal Actio
 [anet2016 CUHK][CUHK_anet]
 
 # *Update
-DPN92 RGB+Flow nonrescale feature [Baidu_pan_passwd_gsja][dpn92]
+DPN92 RGB+Flow nonrescale feature [Baidu_pan_passwd_1h8x][dpn92]
 # Usage Guide
 ## Setting
 ```
@@ -49,7 +49,7 @@ Naive greed search to find a combination.
 ```
 # Demo
 Put TSN RGB trained model in the folder ``./demo_activity``  
-Download: dpn92_RGB_k600_fold_2_rgb_model_best.pth.tar, [google_drive][google_drive] or [baidu_pan_passwd_3u29][baidu_pan]
+Download: dpn92_RGB_k600_fold_2_rgb_model_best.pth.tar, [google_drive][google_drive] or [baidu_pan_passwd_n7s2][baidu_pan]
 ```bash
 cd demo_activity && sh run.sh VIDEO_PATH
 ```
@@ -68,5 +68,5 @@ cd demo_activity && sh run.sh VIDEO_PATH
 [CUHK_anet]:https://github.com/yjxiong/anet2016-cuhk
 [Extract Frames and Optical Flow Images]:https://github.com/yjxiong/temporal-segment-networks#extract-frames-and-optical-flow-images
 [google_drive]:https://drive.google.com/open?id=1014wTFhfv5Cr0vH49x4L4JACtgS8AXw2
-[baidu_pan]:https://pan.baidu.com/s/1T0JfdWWcA7uhh0ohoAYusg
-[dpn92]:https://pan.baidu.com/s/1oQIUgbsJBhzOgfHAKQKsaA
+[baidu_pan]:https://pan.baidu.com/s/1GRqdDKc-kAsuVhKrkMmo1Q
+[dpn92]:https://pan.baidu.com/s/18mWfc_5_WLHWf8AlxCXC9g
