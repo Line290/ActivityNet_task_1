@@ -7,7 +7,7 @@ This repository holds the codes for ActivityNet Challenge Task 1: Temporal Actio
 [anet2016 CUHK][CUHK_anet]
 
 # *Update
-DPN92 RGB+Flow nonrescale feature [Baidu_pan_passwd_1h8x][dpn92]
+DPN92 RGB+Flow nonrescale feature [Baidu_pan_passwd_x8ff][dpn92]
 # Usage Guide
 ## Setting
 ```
@@ -69,4 +69,4 @@ cd demo_activity && sh run.sh VIDEO_PATH
 [Extract Frames and Optical Flow Images]:https://github.com/yjxiong/temporal-segment-networks#extract-frames-and-optical-flow-images
 [google_drive]:https://drive.google.com/open?id=1014wTFhfv5Cr0vH49x4L4JACtgS8AXw2
 [baidu_pan]:https://pan.baidu.com/s/1rDHf8g_uKC_qJReE1pDd2A
-[dpn92]:https://pan.baidu.com/s/18mWfc_5_WLHWf8AlxCXC9g
+[dpn92]:https://pan.baidu.com/s/1pJoAY2MwfHiDFXtuQmiWqA
