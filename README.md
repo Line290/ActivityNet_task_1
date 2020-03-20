@@ -49,8 +49,9 @@ Naive greed search to find a combination.
 ```
 # Demo
 Put TSN RGB trained model in the folder ``./demo_activity``  
-Download: dpn92_RGB_k600_fold_2_rgb_model_best.pth.tar, [google_drive][google_drive] or [baidu_pan_passwd_38cw][baidu_pan]  
-k600_dpn92_fold_0_flow_model_best.pth.tar: [google_drive][dpn92_flow_pretrained_model_google]
+Download:  
+dpn92_RGB_k600_fold_2_rgb_model_best.pth.tar, [google_drive][google_drive] or [baidu_pan_passwd_38cw][baidu_pan]  
+k600_dpn92_fold_0_flow_model_best.pth.tar: [google_drive][dpn92_flow_pretrained_model_google] or [baidu_pan_passwd_7k1j][dpn92_flow_pretrained_model_baidu]
 ```bash
 cd demo_activity && sh run.sh VIDEO_PATH
 ```
@@ -72,3 +73,4 @@ cd demo_activity && sh run.sh VIDEO_PATH
 [baidu_pan]:https://pan.baidu.com/s/1rDHf8g_uKC_qJReE1pDd2A
 [dpn92]:https://pan.baidu.com/s/1pJoAY2MwfHiDFXtuQmiWqA
 [dpn92_flow_pretrained_model_google]:https://drive.google.com/open?id=1wHXeek6QCxb5irOMoOI7Q2sdjTaQoe1M
+[dpn92_flow_pretrained_model_baidu]:https://pan.baidu.com/s/1MdBen2WwHoJ5jcW1mKr15Q
